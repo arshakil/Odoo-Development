@@ -1,0 +1,33 @@
+
+## https://github.com/sayed09
+
+
+root@meta:/docker/odoo-13-docker-master#
+
+docker-compose down
+docker-compose up -d 
+docker-compose restart
+docker-compose logs -t -f --tail 100
+
+
+
+
+#### Setup Docker for Odoo 13 with pgAdmin Access
+
+
+1. open terminal then
+Install docker:
+$ sudo apt install docker.io
+$ sudo systemctl start docker
+$ sudo systemctl enable docker
+
+
+2.Download Docker 
+https://github.com/Sayed09/odoo-13-docker
+
+3.open odoo-13-docker--> where odoo.conf file available then again open terminal and 
+
+Install docker compose:
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+$ sudo systemctl enable docker

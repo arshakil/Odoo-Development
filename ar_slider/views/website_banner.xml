@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="form_view_website_slides" model="ir.ui.view">
+		<field name="name">website.slides</field>
+		<field name="model">website.slide</field>
+		<field name="arch" type="xml">
+
+			<form string="Promotion Offers">
+				<sheet>
+				<group>
+					<field name="name" placeholder="Enter a image title"/>
+					<field name="image" placeholder="Upload your image" widget="image" class="oe_avatar"/>
+				</group>
+				</sheet>
+			</form>
+
+		</field>
+	</record>
+
+	<record id="tree_view_website_slides" model="ir.ui.view">
+		<field name="name">website.slides</field>
+		<field name="model">website.slide</field>
+		<field name="arch" type="xml">
+			<tree string="Promotion Offers">
+				<field name="name" />
+				<field name="image" />
+
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_website_slides" model="ir.actions.act_window">
+		<field name="name">Slides</field>
+		<field name="res_model">website.slide</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="tree_view_website_slides" />
+		<field name="help">You can set website image slides here.</field>
+	</record>
+
+	<!-- Promotion setup menu -->
+	<menuitem id="menu_website_slides_settings" parent="website.menu_website_global_configuration" name="Image Slider" action="action_website_slides" sequence="5" web_icon="ar_slider,static/description/icon.png"/>
+
+
+</odoo>

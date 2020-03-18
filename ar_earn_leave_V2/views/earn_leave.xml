@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- begin -->
+
+<!-- views -->
+
+<!-- form views begin -->
+        <record id="ar_earn_leave_form" model="ir.ui.view">
+            <field name="name">ar_earn_leave.request.form</field>
+            <field name="model">earn.leave</field>
+            <field name="arch" type="xml">
+            <form string=" Earn Leave Form">
+            <!--  -->
+
+            <header>
+                <button string="Approved" type="object" name="action_approved" states="to_approved" class="oe_highlight" groups="base.group_erp_manager"/>
+                <button string="Confirm" type="object" name="action_confirm" states="to_submit" class="oe_highlight" groups="base.group_erp_manager"/>
+                <button string="Refuse" type="object" name="action_refuse" states="approved" class="oe_highlight" groups="base.group_erp_manager"/>
+                <button string="Reset to draft" type="object" name="action_draft" states="refuse" groups="base.group_erp_manager"/>
+                <field name="state" widget="statusbar" statusbar_visible="to_submit,to_approved,approved"/>
+            </header>
+
+            <sheet>
+                <group>
+                <group>
+	                <field name="earn_leave_user_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+                <group>
+                    <field name="allotted_days"/>
+                    <field name="remaining_days"/>
+                    <field name="requested_days"/>
+
+                </group>
+                </group>
+
+<!--                <notebook>-->
+<!--                        <page string="Products"></page>-->
+<!--                        <page string="Description"></page>-->
+<!--                        <page string="Other Information"></page>-->
+<!--                </notebook>-->
+              </sheet>
+
+
+
+                <!--  -->
+                <!-- for chatter view should add dependancy mail -->
+               <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                <!-- end chatter view -->
+                </form>
+            </field>
+        </record>
+<!-- form view end -->
+
+
+
+
+
+<!-- Tree views begin -->
+        <record id="ar_earn_leave_tree" model="ir.ui.view">
+            <field name="name">ar_earn_leave.request.tree</field>
+            <field name="model">earn.leave</field>
+            <field name="arch" type="xml">
+                <tree string="Earn Leave Tree">
+
+                    <field name="earn_leave_user_id"/>
+                    <field name="allotted_days" type="char"/>
+                    <field name="remaining_days" type="char"/>
+                    <field name="requested_days" type="char"/>
+
+
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+<!-- Tree view end -->
+
+        <!-- calendar view -->
+        <record model="ir.ui.view" id="annual_leave_calendar_view">
+            <field name="earn_leave_user_id">earn.leave.calendar</field>
+            <field name="model">earn.leave</field>
+            <field name="arch" type="xml">
+                <calendar string="Annual Leave Calendar" date_start="start_date" date_stop="end_date" color="earn_leave_user_id" mode="month" quick_add="False">
+                    <field name="earn_leave_user_id"/>
+
+
+                </calendar>
+            </field>
+        </record>
+
+        <record id="earn_leave_filter_search" model="ir.ui.view">
+            <field name="name">Earn Leave filter view</field>
+             <field name="model">earn.leave</field>
+            <field name="arch" type="xml">
+                <search string="customer search">
+<!--                    <group expand="1" string="Group by ..">-->
+<!--                        <filter name="state" string="Approved Group" domain="[('state', '=', 'approved')]" context="{'group_by':'state'}"/>-->
+
+<!--                    </group>-->
+        <!-- Filter -->
+                    <filter string="Approved" name="state" domain="[('state', '=', 'approved')]"> </filter>
+<!--                    <filter string="My First Filter" name="acc_id" domain="[('acc_id', '&gt;', 20)]">-->
+<!--                    </filter>-->
+                <!-- Data Searching -->
+<!--                    <field name="acc_fname" string="Name" filter_domain="[('acc_fname', 'ilike', self)]"/>-->
+<!--                    <field name="acc_id" string="Age" filter_domain="[('acc_id', 'ilike', self)]"/>-->
+                </search>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end views -->
+
+
+<!-- action of the manufacturer menu -->
+   <record id="action_earn_leave_request" model="ir.actions.act_window">
+        <field name="name">Earn Leave</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">earn.leave</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">calendar,tree,form</field>
+<!--       <field name="domain">([('state','=','approved')])</field>-->
+        <!-- for default search -->
+         <field name="context">{"search_default_state": 1"}</field>
+        <!--  -->
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+           Create First Earn Leave !
+          </p>
+        </field>
+    </record>
+
+
+
+
+
+<!-- MenuItems -->
+<!--<menuitem id="earn_leave_root" name="Earn Leave Menu" sequence="1" web_icon="ar_leave,static/description/icon.png"/>-->
+<!--<menuitem id="earn_leave_request" name="Earn Leave" parent="earn_leave_root" action="action_earn_leave_request" sequence="1"/>-->
+
+
+<menuitem id="annual_leaves_root" name="Annual Leaves" parent="hr_holidays.menu_hr_holidays_root" action="" sequence="11"/>
+<menuitem id="annual_leaves_request" name="Annual Leaves Request" parent="annual_leaves_root" action="action_earn_leave_request" sequence="1"/>
+
+
+<!-- end document  -->
+</odoo>

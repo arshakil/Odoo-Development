@@ -1,0 +1,18 @@
+go to odoo-13.0 folder and open terminal run cmd below
+./odoo-bin -c odoo-server.conf
+
+[options]
+; This is the password that allows database operations:
+admin_passwd = odoo
+db_host = localhost
+db_port = 5432
+db_user = odoo13dbuser
+db_password = 123456
+addons_path = /home/meta/Downloads/Odoo-projects/odoo-13.0/addons,/home/meta/Downloads/Odoo-projects/odoo-13.0/odoo/addons
+http_port = 8090
+
+
+database:
+
+email: admin@odoo.com
+password: 123456

@@ -1,0 +1,62 @@
+
+## Document right click Active
+-->> touch ~/Templates/"Untitled Document"
+
+## Add Nautilus Admin to the Nautilus Right-Click Menu
+sudo apt-get install nautilus-admin
+nautilus -q
+
+## vs code Install
+sudo apt update
+sudo apt install software-properties-common apt-transport-https wget
+https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt update
+sudo apt install code
+
+##open vscode -->
+sudo code --user-data-dir="~/.vscode-root"
+
+
+## postman ##
+
+## for login
+
+localhost:8090/web/session/authenticate
+Body->raw-> json
+{"jsonrpc":"2.0","params":{"db":"odoo22022020","login":"admin@odoo.com","password":"123456"}}
+
+
+## for logout
+localhost:8090/web/session/destroy
+Headers:: [{"key":"xOpenerp","value":"c8745d47c79df8d8018be70f74431cecfda9de9b"}]
+
+Body->raw-> json:: {"jsonrpc":"2.0","id":"null"}
+
+
+## Getting record
+URL:: localhost:8090/get_leave
+Headers:: [{"key":"xOpenerp","value":"c8745d47c79df8d8018be70f74431cecfda9de9b"}]
+Body--> select json::  {"jesonrpc":"2.0","params":{}}
+
+## Create record
+localhost:8090/create_leave
+[{"key":"xOpenerp","value":"c8745d47c79df8d8018be70f74431cecfda9de9b"}]
+{"jesonrpc":"2.0","params":{"leave_type_off":"extra","leave_days":"3"}}
+
+## Update record
+URL:: localhost:8090/update_leave
+Headers:: [{"key":"xOpenerp","value":"c8745d47c79df8d8018be70f74431cecfda9de9b"}]
+Body--> select json:: {"jesonrpc":"2.0","params":{"id":"4","leave_type_off":"extra2 Updated","leave_days":"8"}}
+
+## delete record
+URL:: localhost:8090/delete_leave
+Headers:: [{"key":"xOpenerp","value":"c8745d47c79df8d8018be70f74431cecfda9de9b"}]
+Body--> select json:: {"jesonrpc":"2.0","params":{"id":"4"}}
+
+
+
+
+
+
+

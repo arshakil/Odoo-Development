@@ -1,0 +1,102 @@
+Odoo 10 Installation:
+1. Update Package
+$ sudo apt update && sudo apt upgrade
+
+2. Install PostgreSQL
+$ sudo apt install git python-pip postgresql python-all-dev python-dev python-setuptools libxml2-dev libxslt1-dev libevent-dev libsasl2-dev libldap2-dev pkg-config libtiff5-dev libjpeg8-dev libjpeg-dev zlib1g-dev libfreetype6-dev liblcms2-dev liblcms2-utils libwebp-dev tcl8.6-dev tk8.6-dev python-tk libyaml-dev fontconfig
+
+3. Create a PostgreSQL USER
+$ sudo su - postgres -c "createuser -s $USER"
+
+4. Create an Odoo User
+$ sudo adduser --system --home=/odoo --group odoo
+
+5. Configure Logs
+$ sudo mkdir /var/log/odoo
+$ touch odoo-server.log
+
+
+6. Install Odoo
+$ sudo git clone https://www.github.com/odoo/odoo --depth 1 --branch 10.0 --single-branch /odoo
+
+7. Install Python Dependencies
+$ sudo pip install -r /odoo/doc/requirements.txt
+$ sudo pip install -r /odoo/requirements.txt
+
+8. Install Less CSS via Node.js and npm
+$ sudo curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+$ sudo apt install -y nodejs
+$ sudo apt install npm
+$ sudo npm install -g less less-plugin-clean-css
+
+9. Install Stable Wkhtmltopdf Version
+$ cd /tmp
+$ sudo wget https://downloads.wkhtmltopdf.org/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
+$ sudo dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
+$ sudo cp /usr/local/bin/wkhtmltopdf /usr/bin
+$ sudo cp /usr/local/bin/wkhtmltoimage /usr/bin
+
+
+10. Odoo Server Configuration
+$ sudo cp /odoo/debian/odoo.conf /etc/odoo-server.conf
+$ sudo nano /etc/odoo-server.conf
+
+
+
+[options]
+admin_passwd = admin
+db_host = False
+db_port = 5432
+db_user = odoo
+db_password = FALSE
+addons_path = /odoo/addons, /odoo/custom/addons 
+;Uncomment the following line to enable a custom log
+logfile = /var/log/odoo/odoo-server.log
+xmlrpc_port = 8069
+
+
+11. Create an Odoo Service
+$ cd /lib/systemd/system
+$ touch odoo-server.service
+$ sudo nano odoo-server.service
+
+
+[Unit]
+Description=Odoo Open Source ERP and CRM
+Requires=postgresql.service
+After=network.target postgresql.service
+[Service]
+Type=simple
+PermissionsStartOnly=true
+SyslogIdentifier=odoo-server
+User=odoo
+Group=odoo
+ExecStart=/odoo/odoo-bin --config=/etc/odoo-server.conf --addons-path=/odoo/addons/
+WorkingDirectory=/odoo/
+StandardOutput=journal+console
+[Install]
+WantedBy=multi-user.target
+
+
+12. Change File Ownership and Permissions
+$ sudo chmod 755 /lib/systemd/system/odoo-server.service
+$ sudo chown root: /lib/systemd/system/odoo-server.service
+$ sudo chown -R odoo: /odoo/
+$ sudo chown odoo:root /var/log/odoo
+$ sudo chown odoo: /etc/odoo-server.conf
+$ sudo chmod 640 /etc/odoo-server.conf
+
+13. Test the ServerPermalink
+$ sudo systemctl start odoo-server
+$ sudo systemctl status odoo-server
+$ sudo journalctl -u postgresql
+$ sudo systemctl stop odoo-server
+$ sudo systemctl status odoo-server
+
+14. Enable the Odoo Service
+$ sudo systemctl enable odoo-server
+$ sudo journalctl -u odoo-server
+
+
+
+source: https://www.linode.com/docs/websites/erp/install-odoo-10-on-ubuntu-16-04/

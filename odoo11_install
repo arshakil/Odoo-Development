@@ -1,0 +1,39 @@
+
+## Install the postgres
+sudo apt-get update
+sudo apt-get install postgresql
+
+## Login to postgres
+sudo su - postgres
+
+## Create a user called Odoo and assign its role
+
+createuser --createdb --username postgres --no-createrole --no-superuser --pwprompt odoo
+
+## Give a password
+## To see the Postgres interpreter
+
+psql
+
+##  Change the user to superuser
+
+ALTER USER odoo WITH SUPERUSER;
+## to exit use
+\q ------>hit enter
+exit ------>hit enter
+
+########## Add odoo-server.conf
+[options]
+; This is the password that allows database operations:
+;admin_passwd = odoo
+db_host = localhost
+db_port = 5432
+db_user = odoo13dbuser
+db_password = 123456
+addons_path = /home/meta/Downloads/odoo-projects/odoo-13.0/addons,/home/meta/Downloads/odoo-projects/odoo-13.0/odoo/addons,/home/meta/Downloads/odoo-projects/odoo-13.0/custom_addons,
+http_port = 8013
+
+
+### Error for pakageloader
+pip3 uninstall jinja2
+pip3 install Jinja2==2.10.1
