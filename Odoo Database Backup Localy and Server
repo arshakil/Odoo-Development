@@ -1,0 +1,79 @@
+#################### ODOO BACKUP ##########################
+
+LINK1: https://linuxize.com/post/how-to-setup-automatic-odoo-backup/
+LINK2: https://linuxize.com/post/scheduling-cron-jobs-with-crontab/
+LINK3: https://www.youtube.com/watch?v=CIVI-DIzCFk
+
+1- LOCALY BACKUP in COMAND LINE
+		    <!--MASTER PWD ODOO-->      <!--ODOO DB NAME-->                                 <!--SAVE DIR-->         <!--LOCAL SERVER-->
+#> curl -X POST -F 'master_pwd=#kaVe5599' -F 'name=basb_backup_27022020' -F 'backup_format=zip' -o /docker/basb_backup_27022020.zip http://localhost:12006/web/database/backup
+
+2- SHEDULE BACKUP IN ODOO 
+
+#> First Create a ~/backup.sh file 
+
+then write the comand
+
+#!/bin/bash
+
+# vars
+BACKUP_DIR=~/odoo_backups
+ODOO_DATABASE=db1
+ADMIN_PASSWORD=superadmin_passwd
+
+# create a backup directory
+mkdir -p ${BACKUP_DIR}
+
+# create a backup
+curl -X POST \
+    -F "master_pwd=${ADMIN_PASSWORD}" \
+    -F "name=${ODOO_DATABASE}" \
+    -F "backup_format=zip" \
+    -o ${BACKUP_DIR}/${ODOO_DATABASE}.$(date +%F).zip \
+    http://localhost:8069/web/database/backup
+
+
+# delete old backups
+find ${BACKUP_DIR} -type f -mtime +7 -name "${ODOO_DATABASE}.*.zip" -delete
+
+Make the script executable with chmod:
+
+#> sudo chmod +x ~/backup_odoo.sh
+
+The last step is to create a new cron job which will run each day at 01:30 am:
+
+#> crontab -e
+
+30 1 * * * /bin/sh /home/<yourusername>/backup_odoo.sh
+
+
+Do not forget to set the correct name and path to the backup script.
+
+
+PG DUMP
+
+#> su postgres
+
+#> psql -l;
+
+                                      List of databases
+        Name        |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+--------------------+----------+----------+-------------+-------------+-----------------------
+ postgres           | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0          | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                    |          |          |             |             | postgres=CTc/postgres
+ template1          | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                    |          |          |             |             | postgres=CTc/postgres
+ test_db_09022020   | odoo     | UTF8     | C           | en_US.UTF-8 | 
+ test_db_skydragous | odoo     | UTF8     | C           | en_US.UTF-8 | 
+(5 rows)
+
+THEN SELECT DATABASE AND RUN THIS COMAND
+
+#> pg_dump test_db_09022020 > ./Desktop/demodata_backup.sql;
+
+
+https://www.odoo.com/forum/help-1/question/restore-6-4-gb-zip-backup-odoo10-133070
+https://youtu.be/KUHD4YGXseI
+
+
