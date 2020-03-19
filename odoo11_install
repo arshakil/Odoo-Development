@@ -37,3 +37,10 @@ http_port = 8013
 ### Error for pakageloader
 pip3 uninstall jinja2
 pip3 install Jinja2==2.10.1
+
+#### ModuleNotFoundError: No module named 'werkzeug.contrib'
+pip3 install werkzeug==0.16.0
+
+
+
+
