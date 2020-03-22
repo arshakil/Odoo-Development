@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_transaction_form_view_inherit" model="ir.ui.view">
+            <field name="name">payment.transaction.form</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.transaction_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/group" position="inside">
+                    <field name="payment_status"/>
+                    <field name="transaction_id"/>
+                    <field name="bank_transaction_id"/>
+                    <field name="card_type"/>
+                    <field name="payment_type"/>
+                    <field name="payment_msg"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

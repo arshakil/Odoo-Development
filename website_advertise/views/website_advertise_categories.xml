@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="form_view_website_advertise_categories" model="ir.ui.view">
+        <field name="name">website.advertise.categories</field>
+        <field name="model">website.advertise.categories</field>
+        <field name="arch" type="xml">
+
+            <form string="Advertise Offers">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="order"/>
+                            <field name="url" placeholder="Enter a URL"/>
+                            <field name="active"/>
+
+                        </group>
+                        <group>
+                            <field name="image" placeholder="Upload your advertise image" widget="image"
+                                   class="oe_avatar"/>
+                            <field name="category_id"/>
+                            <field name="test"/>
+                        </group>
+
+
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="tree_view_website_advertise_categories" model="ir.ui.view">
+        <field name="name">website.advertise.categories</field>
+        <field name="model">website.advertise.categories</field>
+        <field name="arch" type="xml">
+            <tree string="Advertise Category Offers">
+                <field name="order" type="char"/>
+                <field name="url"/>
+                <field name="image"/>
+                <field name="test"/>
+                <field name="active"/>
+                <field name="category_id"/>
+            </tree>
+
+
+        </field>
+    </record>
+
+    <record id="action_website_advertise_categories" model="ir.actions.act_window">
+        <field name="name">Advertise Category</field>
+        <field name="res_model">website.advertise.categories</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="tree_view_website_advertise_categories"/>
+        <field name="help">You can set website advertise here.</field>
+    </record>
+
+    <!-- Promotion setup menu -->
+
+    <menuitem id="menu_website_advertise_categories" parent="menu_website_advertise_settings" name="Categories"
+              action="action_website_advertise_categories" sequence="2"/>
+
+</odoo>

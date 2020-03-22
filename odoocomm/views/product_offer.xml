@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree View -->
+        <record id="product_offer_tree_view" model="ir.ui.view">
+            <field name="name">product.offer.tree.view</field>
+            <field name="model">product.offer</field>
+            <field name="priority" eval="7"/>
+            <field name="arch" type="xml">
+                <tree string="Product Offer">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Form View -->
+        <record id="product_offer_form_view" model="ir.ui.view">
+            <field name="name">product.offer.form.view</field>
+            <field name="model">product.offer</field>
+            <field name="priority" eval="7"/>
+            <field name="arch" type="xml">
+                <form string="Product Offer Form">
+                    <sheet string="Product Offer">
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <div class="oe_left" style="padding-left: 20px;">
+                            <group>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="is_active"/>
+                            </group>
+                        </div>
+                        <group>
+                            <field name="product_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Act Window & Menu Configuration -->
+        <record id="action_product_offer_view" model="ir.actions.act_window">
+            <field name="name">Product Offer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.offer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_offer_tree_view"/>
+        </record>
+
+        <!-- <menuitem name="Product Offer"
+            action="action_product_offer_view"
+            id="menu_action_product_offer_view"
+            parent="sale.product_menu_catalog"
+            sequence="259"/> -->
+        
+    </data>
+</odoo>

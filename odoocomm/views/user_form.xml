@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_user_form" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='access_rights']" position="before">
+                    <page string="Profile">
+                        <form string="Profile Form" create="true">
+                            <sheet string="Profile">
+                                <group col="2" string="Basic Information">
+                                    <group colspan="1">
+                                        <field name="contact_number"/>
+                                    </group>
+                                    <group colspan="1">
+                                        <field name="email_address"/>
+                                    </group>
+                                    <group colspan="1">
+                                        <field name="is_agent"/>
+                                    </group>
+                                    <group colspan="1">
+                                        <field name="pin"/>
+                                    </group>
+                                </group>
+                            </sheet>
+                        </form>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

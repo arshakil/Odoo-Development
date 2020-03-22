@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="form_view_website_advertise_home" model="ir.ui.view">
+        <field name="name">website.advertise.home</field>
+        <field name="model">website.advertise.home</field>
+        <field name="arch" type="xml">
+
+            <form string="Advertise Offers">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="order"/>
+                            <field name="url" placeholder="Enter a URL"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="image" placeholder="Upload your advertise image" widget="image"
+                                   class="oe_avatar"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="tree_view_website_advertise_home" model="ir.ui.view">
+        <field name="name">website.advertise.home</field>
+        <field name="model">website.advertise.home</field>
+        <field name="arch" type="xml">
+            <tree string="Advertise Offers">
+                <field name="order" type="char"/>
+                <field name="url"/>
+                <field name="image"/>
+                <field name="active"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_website_advertise_home" model="ir.actions.act_window">
+        <field name="name">Advertise</field>
+        <field name="res_model">website.advertise.home</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="tree_view_website_advertise_home"/>
+        <field name="help">You can set website advertise here.</field>
+    </record>
+
+    <!-- Promotion setup menu -->
+    <menuitem id="menu_website_advertise_settings" parent="website.menu_website_global_configuration" name="Advertise"
+              action="" sequence="5" web_icon="ar_slider,static/description/icon.png"/>
+    <!--	<menuitem id="image_slider" parent="purchase.menu_procurement_management" name="Image Slider" action="action_website_slides" sequence="100"/>-->
+    <menuitem id="menu_website_advertise_home" parent="menu_website_advertise_settings" name="Home Slider"
+              action="action_website_advertise_home" sequence="1"/>
+
+</odoo>
