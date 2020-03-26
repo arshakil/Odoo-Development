@@ -42,5 +42,6 @@ pip3 install Jinja2==2.10.1
 pip3 install werkzeug==0.16.0
 
 
-
+#### how to install sassc? 
+pip3 install libsass==0.12.3
 
