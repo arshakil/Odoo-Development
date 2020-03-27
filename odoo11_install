@@ -45,3 +45,5 @@ pip3 install werkzeug==0.16.0
 #### how to install sassc? 
 pip3 install libsass==0.12.3
 
+## ERROR odoo11 odoo.addons.base.ir.ir_qweb.assetsbundle: Could not execute command 'lessc'
+--> sudo apt-get install node-less
