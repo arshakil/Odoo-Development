@@ -14,6 +14,8 @@ $alter role openerp with password 'postgres';
 6. Give All pemission (openerp is your db name) exit from postgres then type this cmd
 $sudo -u postgres psql -c 'alter user openerp with createdb' postgres
 
+7. Drop User
+postgres=# DROP USER odoo11;
 
 ########## check odoo#######
 xmlrpc_port = 8070
@@ -30,3 +32,7 @@ $kill -9 13476
 6. --->\q
 7. --->exit
 8. --->sudo -u postgres psql -c 'alter user odoo11 with createdb' postgres
+
+
+### Optional ##
+9.postgres=# DROP USER odoo11;
