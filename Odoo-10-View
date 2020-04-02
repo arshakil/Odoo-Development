@@ -18,7 +18,7 @@
                          </notebook>
                          
                          
-                         # For One2may field
+                        <!---->  # For One2may field 
                          <notebook>
                                <page string="Sessions">
                                 <field name="session_ids">
@@ -39,6 +39,11 @@
                                 </field>
                             </page>
                          </notebook>
+                     <!---->
+                     
+                     
+                     
+                     
                     </sheet>
                 </form>
             </field>
