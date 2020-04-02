@@ -49,19 +49,19 @@ class SalesOrder(models.Model):
       </page>
     </xpath>
     
-5. <xpath expr="//page[@string='Information']/group" position="after"> <!-- Note that @string xpath expressions have been removed in V10.0! --> 
+6. <xpath expr="//page[@string='Information']/group" position="after"> <!-- Note that @string xpath expressions have been removed in V10.0! --> 
 		  <group>
 		    <field name="FieldAfterGroup"/>
 		  </group>
 	</xpath> 
     
-5.  <xpath expr="//page[3]/group/group[@name='technical']" position="after">
+7.  <xpath expr="//page[3]/group/group[@name='technical']" position="after">
       <group string="New Group">
           <field name="group_field"/>
       </group>
     </xpath>
              
-6.  <notebook position="inside">
+8.  <notebook position="inside">
         <page string="Sessions">
             <group>
                 <field name="instructor"/>
@@ -70,23 +70,29 @@ class SalesOrder(models.Model):
         </page>
     </notebook>
     
-7. <xpath expr="form/sheet/notebook/page/group/field[@name='amount_total']" position="replace">
+9. <xpath expr="form/sheet/notebook/page/group/field[@name='amount_total']" position="replace">
       <field name="sum_of_total"/>
     </xpath>
 
- 8. state = fields.Selection(selection_add=[('new_state', 'New State')]) # adding new state in inherited view
+ 10. state = fields.Selection(selection_add=[('new_state', 'New State')]) # adding new state in inherited view
    <xpath expr="//field[@name='state']" position="attributes">
         <attribute name="statusbar_visible">draft,sent,sale,new_state</attribute>
     </xpath>   
     
- 9. <field name="note" readonly="1"/> # changing the note field readonly to false and string note to description
+ 11. <field name="note" readonly="1"/> # changing the note field readonly to false and string note to description
       <xpath expr="//form/field[@name='note']" position="attributes">
          <attribute name="readonly">False</attribute>
          <attribute name="string">Description</attribute>
       </xpath>  
       
- 10. <xpath expr="//page[@string='Contacts']" position="attributes">
+ 12. <xpath expr="//page[@string='Contacts']" position="attributes">
         <attribute name="attrs">{‘readonly’:[(‘state’,’in’,[‘draft’,’sent’])]}</attribute>
     </xpath>
     
 
+13. Adding Smart Button # https://github.com/arshakil/Odoo-Development/blob/master/employee_earn_leave/views/employee_inherited_view.xml
+	<xpath expr="//div[@name='button_box']" position="inside">
+	<button name="action_earn_leaves" type="object" class="oe_stat_button" icon="fa-archive" string="">
+		<field name="count_earn_days" string="Earn Leaves" widget="statinfo"/>
+	</button>
+	</xpath>
