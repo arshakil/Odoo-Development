@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+        <!-- Add instructor field to existing view -->
+ #form view 
+        <record model="ir.ui.view" id="course_from_view">
+            <field name="name">course.tree</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                        <group>
+                            <group string="General">
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description"></page>
+                         </notebook>
+                         
+                         
+                         # For One2may field
+                         <notebook>
+                               <page string="Sessions">
+                                <field name="session_ids">
+                                    <tree string="Registered sessions">
+                                        <field name="name"/>
+                                        <field name="instructor_id" invisible="1"/>
+                                    </tree>
+                                    
+                                   <form>
+                                    <group>
+                                        <group>
+                                          <field name="name"/>
+                                          <field name="instructor_id" invisible="1"/>
+                                        </group>
+                                    </group>
+                                </form> 
+                                    
+                                </field>
+                            </page>
+                         </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        
+        
+ # tree View        
+        <record model="ir.ui.view" id="course_tree_view">
+            <field name="name">course.tree</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <tree string="Course Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+#action 
+        <record model="ir.actions.act_window" id="contact_list_action">
+            <field name="name">Contacts</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create First Content !
+                </p>
+            </field>
+            
+        </record>
+        
+        
+        
+        <menuitem id="configuration_menu" name="Configuration"
+                  parent="main_openacademy_menu"/>
+        <menuitem id="contact_menu" name="Contacts"
+                  parent="configuration_menu"
+                  action="contact_list_action"/>
+
+</odoo>
