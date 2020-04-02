@@ -37,7 +37,7 @@ class SalesOrder(models.Model):
       <field name="idea_ids" string="Number of ideas"/>
     </xpath>
     
-3.  <xpath expr="//field[@string='description']" position="after">  #odoo 10 doesn't support @string
+3.  <xpath expr="//field[@string='description']" position="after"> <!-- Note that @string xpath expressions have been removed in V10.0! -->   
       <field name="idea_ids" string="Number of ideas"/>
     </xpath>
    
@@ -48,6 +48,12 @@ class SalesOrder(models.Model):
           </group>
       </page>
     </xpath>
+    
+5. <xpath expr="//page[@string='Information']/group" position="after"> <!-- Note that @string xpath expressions have been removed in V10.0! --> 
+		  <group>
+		    <field name="FieldAfterGroup"/>
+		  </group>
+	</xpath> 
     
 5.  <xpath expr="//page[3]/group/group[@name='technical']" position="after">
       <group string="New Group">
