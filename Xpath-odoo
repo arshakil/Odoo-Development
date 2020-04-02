@@ -1,0 +1,86 @@
+# in py file
+from odoo import fields, models, api
+
+class SalesOrder(models.Model):
+    # inherits the sale order model
+    _inherit = 'sale.order'
+
+    # Newly created fields
+    page_field = fields.Char(string="Page Field")
+    group_field = fields.Char(string="Group Field")
+    new_field = fields.Char(string="New Field")
+    
+    
+   #in xml file
+   
+      <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+          <!-- Add your code here -->
+          
+          
+
+        </field>
+      </record>
+
+
+  
+   # Examples inside,replace,before,after,attributes
+
+1.  <field name="description" position="after">
+      <field name="idea_ids" />
+    </field>
+
+2.  <xpath expr="//field[@name='description']" position="after">
+      <field name="idea_ids" string="Number of ideas"/>
+    </xpath>
+    
+3.  <xpath expr="//field[@string='description']" position="after">  #odoo 10 doesn't support @string
+      <field name="idea_ids" string="Number of ideas"/>
+    </xpath>
+   
+4.  <xpath expr="//page[1]" position="after">
+      <page string="New page">
+          <group>
+              <field name="page_field"/>
+          </group>
+      </page>
+    </xpath>
+    
+5.  <xpath expr="//page[3]/group/group[@name='technical']" position="after">
+      <group string="New Group">
+          <field name="group_field"/>
+      </group>
+    </xpath>
+             
+6.  <notebook position="inside">
+        <page string="Sessions">
+            <group>
+                <field name="instructor"/>
+                <field name="session_ids"/>
+            </group>
+        </page>
+    </notebook>
+    
+7. <xpath expr="form/sheet/notebook/page/group/field[@name='amount_total']" position="replace">
+      <field name="sum_of_total"/>
+    </xpath>
+
+ 8. state = fields.Selection(selection_add=[('new_state', 'New State')]) # adding new state in inherited view
+   <xpath expr="//field[@name='state']" position="attributes">
+        <attribute name="statusbar_visible">draft,sent,sale,new_state</attribute>
+    </xpath>   
+    
+ 9. <field name="note" readonly="1"/> # changing the note field readonly to false and string note to description
+      <xpath expr="//form/field[@name='note']" position="attributes">
+         <attribute name="readonly">False</attribute>
+         <attribute name="string">Description</attribute>
+      </xpath>  
+      
+ 10. <xpath expr="//page[@string='Contacts']" position="attributes">
+        <attribute name="attrs">{‘readonly’:[(‘state’,’in’,[‘draft’,’sent’])]}</attribute>
+    </xpath>
+    
+
