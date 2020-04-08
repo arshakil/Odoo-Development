@@ -4,8 +4,8 @@
 
     <!-- form views begin -->
     <record id="employee_kpi_form" model="ir.ui.view">
-        <field name="name">hr.emplyee.kpi.form</field>
-        <field name="model">hr.emplyee.kpi</field>
+        <field name="name">hr.employee.kpi.form</field>
+        <field name="model">hr.employee.kpi</field>
         <field name="arch" type="xml">
             <form string="Employee Kpi Form">
                 <!--  -->
@@ -85,8 +85,8 @@
 
     <!-- Tree views begin -->
     <record id="employee_kpi_tree" model="ir.ui.view">
-        <field name="name">hr.emplyee.kpi.tree</field>
-        <field name="model">hr.emplyee.kpi</field>
+        <field name="name">hr.employee.kpi.tree</field>
+        <field name="model">hr.employee.kpi</field>
         <field name="arch" type="xml">
             <tree string="Employee Kpi Tree">
 
@@ -109,7 +109,7 @@
     <!-- action of the manufacturer menu -->
     <record id="action_employee_kpi" model="ir.actions.act_window">
         <field name="name">Employee KPI</field>
-        <field name="res_model">hr.emplyee.kpi</field>
+        <field name="res_model">hr.employee.kpi</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

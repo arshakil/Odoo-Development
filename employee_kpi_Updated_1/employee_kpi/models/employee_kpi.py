@@ -4,7 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from datetime import datetime
 class Employee_kpi(models.Model):
-    _name = 'hr.emplyee.kpi'
+    _name = 'hr.employee.kpi'
     _description = 'Employee KPI'
     _rec_name = "employee_id"
     _order = "id asc"
@@ -89,7 +89,7 @@ class Employee_kpi_lines(models.Model):
     target = fields.Float(string="Target", digits=(12,2))
     actual = fields.Float(string="Actual")
     unit = fields.Char(string="Unit")
-    employee_kpi_id = fields.Many2one('hr.emplyee.kpi', string='Employee KPI Assign',ondelete='cascade')
+    employee_kpi_id = fields.Many2one('hr.employee.kpi', string='Employee KPI Assign',ondelete='cascade')
 
 
 
