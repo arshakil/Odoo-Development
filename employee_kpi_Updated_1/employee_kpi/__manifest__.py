@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "employee_kpi",
+    'name': "Employee Kpi",
 
     'summary': """
     This is module is used to record and monitor periodic KPI for each employee
