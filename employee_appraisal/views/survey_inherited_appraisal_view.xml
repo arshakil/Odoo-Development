@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- survey inherited view for appraisal-->
+        <record id="survey_inherited_appraisal_id" model="ir.ui.view">
+            <field name="name">survey.view.appraisal</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="arch" type="xml">
+
+                <!--                -->
+                <field name="title" position="after">
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="manager_id"/>
+                            <field name="subordinates_id"/>
+                            <field name="colleagues_id"/>
+                            <field name="appraisal_deadline"/>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="mail_to_employee_ischecked"/>
+                            <field name="mail_to_manager_ischecked"/>
+                            <field name="mail_to_subordinates_ischecked"/>
+                            <field name="mail_to_colleagues_ischecked"/>
+                        </group>
+                    </group>
+                </field>
+                <!--                -->
+
+
+                <!-- page begin-->
+                <xpath expr="//page[2]" position="after">
+                    <page string="Mail To Send">
+                        <group>
+                            <field name="mail_to_employee_text"
+                                   attrs="{'invisible':[('mail_to_employee_ischecked', '!=', True)]}"/>
+                            <field name="mail_to_manager_text"
+                                   attrs="{'invisible':[('mail_to_manager_ischecked', '!=', True)]}"/>
+
+                            <field name="mail_to_subordinates_text"
+                                   attrs="{'invisible':[('mail_to_subordinates_ischecked', '!=', True)]}"/>
+                            <field name="mail_to_colleagues_text"
+                                   attrs="{'invisible':[('mail_to_colleagues_ischecked', '!=', True)]}"/>
+
+                        </group>
+                    </page>
+                </xpath>
+                <!--  page end              -->
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
