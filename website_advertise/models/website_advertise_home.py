@@ -12,4 +12,8 @@ class WebsiteAdvertiseHome(models.Model):
     url = fields.Char(string="Url", required=True,)
     image = fields.Binary(string="Image", required=True,)
     active = fields.Boolean('Active', default=True)
+    destination = fields.Selection([
+        ('app', 'app'),
+        ('web', 'web'),
+    ], 'Destination', default='app', required=True)
 

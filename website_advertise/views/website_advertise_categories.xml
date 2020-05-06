@@ -11,6 +11,7 @@
                         <group>
                             <field name="order"/>
                             <field name="url" placeholder="Enter a URL"/>
+                            <field name="destination"/>
                             <field name="active"/>
 
                         </group>
@@ -18,7 +19,6 @@
                             <field name="image" placeholder="Upload your advertise image" widget="image"
                                    class="oe_avatar"/>
                             <field name="category_id"/>
-                            <field name="test"/>
                         </group>
 
 
@@ -36,10 +36,11 @@
             <tree string="Advertise Category Offers">
                 <field name="order" type="char"/>
                 <field name="url"/>
+                <field name="destination"/>
                 <field name="image"/>
-                <field name="test"/>
-                <field name="active"/>
                 <field name="category_id"/>
+                <field name="active"/>
+
             </tree>
 
 

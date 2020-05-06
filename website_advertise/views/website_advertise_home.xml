@@ -11,6 +11,7 @@
                         <group>
                             <field name="order"/>
                             <field name="url" placeholder="Enter a URL"/>
+                            <field name="destination"/>
                             <field name="active"/>
                         </group>
                         <group>
@@ -31,6 +32,7 @@
             <tree string="Advertise Offers">
                 <field name="order" type="char"/>
                 <field name="url"/>
+                <field name="destination"/>
                 <field name="image"/>
                 <field name="active"/>
 

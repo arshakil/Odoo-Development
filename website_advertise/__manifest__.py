@@ -1,7 +1,7 @@
 {
     'name': 'Website Advertise',
     'category': 'Website',
-    'sequence': -1,
+    'sequence': 1,
     'website': 'https://metamorphosis.com.bd/',
     'summary': 'Website,Add,Advertise',
     'version': '11.0',

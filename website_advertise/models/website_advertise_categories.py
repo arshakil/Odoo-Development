@@ -11,8 +11,13 @@ class WebsiteAdvertiseCategories(models.Model):
     order = fields.Integer('Order', required=True,)
     url = fields.Char(string="Url", required=True,)
     image = fields.Binary(string="Image", required=True,)
-    test = fields.Char(string="test", )
     active = fields.Boolean('Active', default=True)
     category_id = fields.Many2one('product.public.category', string='Category')
+    destination = fields.Selection([
+        ('app', 'app'),
+        ('web', 'web'),
+    ], 'Destination', default='app', required=True)
+
+
 
 
