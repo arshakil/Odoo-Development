@@ -36,3 +36,6 @@ $kill -9 13476
 
 ### Optional ##
 9.postgres=# DROP USER odoo11;
+
+# To Learn More
+1. https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e

@@ -20,7 +20,7 @@ sudo apt-get install postgresql
 sudo –su postgres
 or, sudo su - postgres
 
-## Create a user called Odoo and assign its role
+## Create a user called odoo and assign its role
 createuser --createdb --username postgres --no-createrole --no-superuser --pwprompt odoo
 ## Give a password
 ## To see the Postgres interpreter
@@ -38,3 +38,4 @@ https://github.com/odoo/odoo
 More help: 
 https://www.youtube.com/watch?v=qri0ZF8kUhU&list=PLeJtXzTubzj-tbQ94heWeQFB0twGd0vvN&index=2
 https://www.youtube.com/watch?v=V8JxrYLX0VM&list=PLeJtXzTubzj-tbQ94heWeQFB0twGd0vvN&index=1
+1. https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
